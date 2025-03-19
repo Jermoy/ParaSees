@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Your Journey - ParaSees Marketing Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="description" content="Discover new marketing horizons with ParaSees in England. Expert SEO, social media, and branding services. Begin your journey to success!">
+   
+    <meta name="keywords" content="Email Marketing Services,Digital Marketing UK,Web Design England,ParaSees Branding Experts">
+    <title>ParaSees Marketing Group</title>
     <link rel="icon" type="image/x-icon" href="Favicon.ico">
+    <link rel="canonical" href="https://parasees.com/index.html">
     <style>
         /* Base styles */
         * {
@@ -16,13 +20,11 @@
         body {
             font-family: Arial, sans-serif;
             overflow-x: hidden;
-            background-color: #000;
-            color: white;
         }
         
         /* Navbar styles */
         .navbar {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -31,8 +33,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
         }
         
         .logo {
@@ -73,386 +73,213 @@
             cursor: pointer;
         }
         
-        /* Journey page styles */
-        .journey-container {
+        /* Hero section styles */
+        .hero-section {
+            position: relative;
             min-height: 100vh;
             width: 100%;
-            background-image: url('Journey-BG.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            padding-top: 6rem;
-            padding-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            overflow: hidden;
         }
         
-        .journey-overlay {
+        .gradient-bg {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(102, 31, 153, 0.2), rgba(0,0,0,0.8));
+            background: linear-gradient(to bottom, #000000, rgba(102, 31, 153, 0.2), #000000);
             z-index: 1;
         }
         
-        .journey-content {
-            position: relative;
+        .canvas-container {
+            position: absolute;
+            inset: 0;
             z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
         }
         
-        .journey-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .content-container {
+            position: relative;
+            z-index: 3;
             text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 1rem;
+            padding-top: 5rem;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
             background: linear-gradient(to right, #c3b1e1, #93c5fd, #c3b1e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
-        .journey-subtitle {
-            font-size: 1.2rem;
+        .hero-description {
+            font-size: 1.1rem;
             color: #a0a0a0;
             max-width: 800px;
             margin: 0 auto 3rem;
-            text-align: center;
             line-height: 1.6;
         }
         
-        .journey-steps {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-        
-        .step-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 350px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(147, 51, 234, 0.2);
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
+        /* Button styles */
+        .contact-btn {
+            position: relative;
+            overflow: hidden;
             background: linear-gradient(to right, #9333ea, #6366f1);
-            border-radius: 50%;
             color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            display: flex;
+            font-weight: 500;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem;
+            text-decoration: none;
+        }
+        
+        .contact-btn:hover {
+            box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
+        }
+        
+        .contact-btn .icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-btn:hover .icon {
+            transform: translateX(4px);
+        }
+        
+        .secondary-btn {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+        
+        .secondary-btn:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Feature cards */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 280px;
+            width: 100%;
+            position: relative;
+        }
+        
+        .feature-card h3 {
+            color: #c3b1e1;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .feature-card p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .feature-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
             margin-bottom: 1rem;
         }
         
-        .step-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #c3b1e1;
-        }
-        
-        .step-description {
-            color: #a0a0a0;
-            line-height: 1.5;
-        }
-        
-        /* Form styles */
-        .contact-form-container {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .form-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #c3b1e1;
-            text-align: center;
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #a0a0a0;
-        }
-        
-        .form-input,
-        .form-textarea,
-        .form-select {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-input:focus,
-        .form-textarea:focus,
-        .form-select:focus {
-            outline: none;
-            border-color: #9333ea;
-        }
-        
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .form-submit {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 2rem auto 0;
-            padding: 1rem;
-            background: linear-gradient(to right, #9333ea, #6366f1);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .form-submit:hover {
-            box-shadow: 0 5px 15px rgba(147, 51, 234, 0.4);
-        }
-        
-        /* Floating elements */
-        .floating-element {
+        /* Scroll indicator */
+        .scroll-indicator {
             position: absolute;
-            z-index: 1;
-            opacity: 0.2;
-            pointer-events: none;
-        }
-        
-        .planet-1 {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #9333ea, #000);
-            top: 20%;
-            left: 5%;
-            animation: float 20s infinite alternate ease-in-out;
-        }
-        
-        .planet-2 {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 70% 70%, #6366f1, #000);
-            bottom: 15%;
-            right: 10%;
-            animation: float 15s infinite alternate-reverse ease-in-out;
-        }
-        
-        .star-field {
-            position: fixed;
-            top: 0;
+            bottom: 2rem;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            animation: bounce 2s infinite;
         }
         
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
         }
         
-        /* Animations */
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                transform: translateY(30px) rotate(10deg);
-            }
+        /* Canvas styles */
+        canvas {
+            display: block;
         }
         
         /* Media queries */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.9);
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem 0;
-                gap: 1rem;
             }
             
             .menu-btn {
                 display: block;
             }
             
-            .journey-title {
+            .hero-title {
                 font-size: 2rem;
-            }
-            
-            .planet-1, .planet-2 {
-                display: none;
             }
         }
     </style>
 
 <script type="module">
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAHnEJguzTaB-_MIRXu590SjIsmtF8Sy_M",
-  authDomain: "parasees-a7b67.firebaseapp.com",
-  projectId: "parasees-a7b67",
-  storageBucket: "parasees-a7b67.firebasestorage.app",
-  messagingSenderId: "721022319631",
-  appId: "1:721022319631:web:9f0c3b10051ed5ac7f377a",
-  measurementId: "G-5Z6GTTJGTC"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
-
-// Function to save form data to Firebase
-async function saveToFirebase(formData) {
-    try {
-        const docRef = await addDoc(collection(db, "submissions"), formData);
-        console.log("Document written with ID: ", docRef.id);
-        return true;
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        return false;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the contact form element
-    const contactForm = document.getElementById('contactForm');
-    
-    // Add submit event listener to the form
-    contactForm.addEventListener('submit', async function(event) {
-        // Prevent the default form submission
-        event.preventDefault();
-        
-        // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            company: document.getElementById('company').value,
-            phone: document.getElementById('phone').value,
-            service: document.getElementById('service').value,
-            timestamp: new Date()
-        };
-        
-        // Display loading state
-        const submitButton = document.querySelector('.form-submit');
-        const originalButtonText = submitButton.textContent;
-        submitButton.textContent = 'Submitting...';
-        submitButton.disabled = true;
-        
-        // Save to Firebase
-        const success = await saveToFirebase(formData);
-        
-        if (success) {
-            // Show success message
-            showFormMessage('Thank you for your submission! We\'ll contact you within 24 hours.', 'success');
-            
-            // Reset form
-            contactForm.reset();
-        } else {
-            // Show error message
-            showFormMessage('An error occurred. Please try again later.', 'error');
-        }
-        
-        // Restore button
-        submitButton.textContent = originalButtonText;
-        submitButton.disabled = false;
-    });
-    
-    // Function to show success/error message
-    function showFormMessage(message, type) {
-        // Remove any existing message
-        const existingMessage = document.getElementById('formMessage');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-        
-        // Create message element
-        const messageElement = document.createElement('div');
-        messageElement.id = 'formMessage';
-        messageElement.textContent = message;
-        messageElement.style.padding = '1rem';
-        messageElement.style.marginTop = '1rem';
-        messageElement.style.borderRadius = '8px';
-        messageElement.style.textAlign = 'center';
-        
-        // Style based on message type
-        if (type === 'success') {
-            messageElement.style.backgroundColor = 'rgba(52, 211, 153, 0.2)';
-            messageElement.style.border = '1px solid rgba(52, 211, 153, 0.5)';
-            messageElement.style.color = '#10b981';
-        } else {
-            messageElement.style.backgroundColor = 'rgba(248, 113, 113, 0.2)';
-            messageElement.style.border = '1px solid rgba(248, 113, 113, 0.5)';
-            messageElement.style.color = '#ef4444';
-        }
-        
-        // Add message to form
-        contactForm.appendChild(messageElement);
-        
-        // Remove message after 5 seconds
-        setTimeout(function() {
-            messageElement.style.opacity = '0';
-            messageElement.style.transition = 'opacity 0.5s ease';
-            setTimeout(function() {
-                messageElement.remove();
-            }, 500);
-        }, 5000);
-    }
-});
-</script>
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAHnEJguzTaB-_MIRXu590SjIsmtF8Sy_M",
+      authDomain: "parasees-a7b67.firebaseapp.com",
+      projectId: "parasees-a7b67",
+      storageBucket: "parasees-a7b67.firebasestorage.app",
+      messagingSenderId: "721022319631",
+      appId: "1:721022319631:web:9f0c3b10051ed5ac7f377a",
+      measurementId: "G-5Z6GTTJGTC"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -463,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <span> Marketing Group</span>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
             <a href="#services">Services</a>
             <a href="#about">About</a>
             <a href="#work">Work</a>
@@ -478,112 +304,215 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
     </nav>
 
-    <!-- Journey Section -->
-    <section class="journey-container">
-        <div class="journey-overlay"></div>
-        
-        <!-- Floating elements -->
-        <div class="floating-element planet-1"></div>
-        <div class="floating-element planet-2"></div>
-        
-        <!-- Star field -->
-        <div class="star-field" id="starField"></div>
-        
-        <div class="journey-content">
-            <h1 class="journey-title">Begin Your Marketing Odyssey</h1>
-            <p class="journey-subtitle">
-                Embark on a transformative journey with ParaSees Marketing Group. Our
-                cosmic approach to marketing will propel your brand to new heights
-                and connect you with your ideal audience.
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="gradient-bg"></div>
+        <div class="canvas-container" id="floatingObjectsCanvas"></div>
+        <div class="content-container">
+            <h1 class="hero-title">Discover New Galaxies for Your Brand</h1>
+            <p class="hero-description">
+                ParaSees Marketing Group helps businesses navigate the digital
+                universe with innovative strategies that deliver stellar results. Our
+                cosmic approach to marketing launches your brand beyond the
+                competition.
             </p>
-            
-            <!-- Journey steps -->
-            <div class="journey-steps">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Discovery</h3>
-                    <p class="step-description">
-                        We begin by understanding your business, goals, and challenges.
-                        Our team conducts thorough market research and analysis to
-                        identify opportunities for growth and innovation.
-                    </p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Strategy</h3>
-                    <p class="step-description">
-                        Based on our discoveries, we craft a tailored marketing
-                        strategy that aligns with your objectives. Our data-driven
-                        approach ensures measurable results and return on investment.
-                    </p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Implementation</h3>
-                    <p class="step-description">
-                        Our expert team executes the strategy with precision,
-                        leveraging cutting-edge tools and techniques. We monitor
-                        performance and make adjustments for optimal results.
-                    </p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Growth</h3>
-                    <p class="step-description">
-                        Watch your brand soar as we continually refine our approach
-                        based on data and feedback. Our long-term partnerships focus
-                        on sustainable growth and lasting success.
-                    </p>
-                </div>
+            <div class="button-container" href="journey-page.html">
+               <a href=journey-page.html class="contact-btn">
+                    Start Your Journey
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                    </a>
+                </button>
+                <button class="secondary-btn">Explore Services</button>
             </div>
-            
-            <!-- Contact form -->
-            <div class="contact-form-container">
-                <h2 class="form-title">Ready to Launch? Tell Us About Your Project</h2>
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" class="form-input" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="company" class="form-label">Company</label>
-                            <input type="text" id="company" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" id="phone" class="form-input">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="service" class="form-label">Service of Interest</label>
-                            <select id="service" class="form-select">
-                                <option value="">Select a service</option>
-                                <option value="brand">Brand Strategy</option>
-                                <option value="digital">Digital Marketing</option>
-                                <option value="social">Social Media</option>
-                                <option value="content">Content Creation</option>
-                                <option value="seo">SEO & Analytics</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="form-submit">Launch Your Brand</button>
-                </form>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-image" style="background-image: url('Replace1st.jpg')"></div>
+                    <h3>Strategic Planning</h3>
+                    <p>Data-driven marketing strategies tailored to your unique business goals</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image" style="background-image: url('2nd-img.jpg')"></div>
+                    <h3>Creative Solutions</h3>
+                    <p>Eye-catching designs and compelling content that captivates your audience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image" style="background-image: url('REPLACE3RD.jpg')"></div>
+                    <h3>Growth Acceleration</h3>
+                    <p>Proven techniques to expand your reach and boost your business metrics</p>
+                </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </div>
     </section>
+
+    <script>
+        // Canvas animation for floating objects
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('floatingObjectsCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                generateObjects();
+            }
+            
+            // Generate floating objects
+            let objects = [];
+            
+            function generateObjects() {
+                objects = [];
+                
+                // Generate stars
+                for (let i = 0; i < 100; i++) {
+                    objects.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 2 + 1,
+                        speed: Math.random() * 0.2 + 0.1,
+                        opacity: Math.random() * 0.8 + 0.2,
+                        type: 'star',
+                        color: ['#ffffff', '#ffe9c4', '#d4fbff'][Math.floor(Math.random() * 3)]
+                    });
+                }
+                
+                // Generate planets
+                for (let i = 0; i < 5; i++) {
+                    objects.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 15 + 5,
+                        speed: Math.random() * 0.05 + 0.02,
+                        opacity: Math.random() * 0.5 + 0.3,
+                        type: 'planet',
+                        color: ['#8a2be2', '#4b0082', '#483d8b', '#6a5acd', '#7b68ee'][Math.floor(Math.random() * 5)],
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: (Math.random() - 0.5) * 0.01
+                    });
+                }
+                
+                // Generate comets
+                for (let i = 0; i < 3; i++) {
+                    objects.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 3 + 1,
+                        speed: Math.random() * 1 + 0.5,
+                        opacity: Math.random() * 0.7 + 0.3,
+                        type: 'comet',
+                        color: '#ffffff'
+                    });
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                objects.forEach(obj => {
+                    ctx.save();
+                    ctx.globalAlpha = obj.opacity;
+                    
+                    switch (obj.type) {
+                        case 'star':
+                            ctx.fillStyle = obj.color;
+                            ctx.beginPath();
+                            ctx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
+                            ctx.fill();
+                            
+                            // Move star
+                            obj.y += obj.speed;
+                            if (obj.y > canvas.height) {
+                                obj.y = 0;
+                                obj.x = Math.random() * canvas.width;
+                            }
+                            break;
+                            
+                        case 'planet':
+                            ctx.fillStyle = obj.color;
+                            ctx.beginPath();
+                            ctx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
+                            ctx.fill();
+                            
+                            // Add ring to planet
+                            if (Math.random() > 0.5) {
+                                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                                ctx.lineWidth = 2;
+                                ctx.beginPath();
+                                ctx.ellipse(obj.x, obj.y, obj.size * 1.5, obj.size * 0.5, obj.rotation || 0, 0, Math.PI * 2);
+                                ctx.stroke();
+                                
+                                // Rotate planet
+                                if (obj.rotation !== undefined && obj.rotationSpeed !== undefined) {
+                                    obj.rotation += obj.rotationSpeed;
+                                }
+                            }
+                            
+                            // Move planet
+                            obj.y += obj.speed;
+                            if (obj.y > canvas.height + obj.size) {
+                                obj.y = -obj.size;
+                                obj.x = Math.random() * canvas.width;
+                            }
+                            break;
+                            
+                        case 'comet':
+                            const gradient = ctx.createLinearGradient(obj.x, obj.y, obj.x - obj.size * 10, obj.y - obj.size * 10);
+                            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+                            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                            ctx.fillStyle = gradient;
+                            ctx.beginPath();
+                            ctx.moveTo(obj.x, obj.y);
+                            ctx.lineTo(obj.x - obj.size * 3, obj.y - obj.size);
+                            ctx.lineTo(obj.x - obj.size * 10, obj.y - obj.size * 10);
+                            ctx.lineTo(obj.x - obj.size, obj.y - obj.size * 3);
+                            ctx.closePath();
+                            ctx.fill();
+                            
+                            // Move comet diagonally
+                            obj.x += obj.speed;
+                            obj.y += obj.speed;
+                            if (obj.x > canvas.width || obj.y > canvas.height) {
+                                obj.x = -obj.size * 10;
+                                obj.y = -obj.size * 10;
+                            }
+                            break;
+                    }
+                    
+                    ctx.restore();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Initial setup
+            resizeCanvas();
+            animate();
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>

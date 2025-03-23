@@ -16,9 +16,13 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            background-color: black;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
         }
         
         /* Navbar styles */
@@ -38,6 +42,7 @@
             color: white;
             font-weight: bold;
             font-size: 1.5rem;
+            z-index: 101;
         }
         
         .logo .purple {
@@ -244,6 +249,8 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                flex-direction: column;
+                align-items: center;
             }
             
             .menu-btn {
@@ -253,32 +260,37 @@
             .hero-title {
                 font-size: 2rem;
             }
+            
+            /* Mobile menu overlay */
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 99;
+                display: none;
+            }
+            
+            .menu-overlay.active {
+                display: block;
+            }
+            
+            /* Content visibility */
+            .content-container {
+                visibility: visible;
+                opacity: 1;
+                transition: visibility 0s, opacity 0.3s ease;
+            }
+            
+            .content-container.hidden {
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+            }
         }
     </style>
-
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyAHnEJguzTaB-_MIRXu590SjIsmtF8Sy_M",
-      authDomain: "parasees-a7b67.firebaseapp.com",
-      projectId: "parasees-a7b67",
-      storageBucket: "parasees-a7b67.firebasestorage.app",
-      messagingSenderId: "721022319631",
-      appId: "1:721022319631:web:9f0c3b10051ed5ac7f377a",
-      measurementId: "G-5Z6GTTJGTC"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -302,11 +314,16 @@
             </svg>
         </button>
     </nav>
+    
+    <!-- Mobile menu overlay -->
+    <div class="menu-overlay"></div>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="gradient-bg"></div>
-        <div class="canvas-container" id="floatingObjectsCanvas"></div>
+        <div class="canvas-container" id="floatingObjectsCanvas">
+            <canvas></canvas>
+        </div>
         <div class="content-container">
             <h1 class="hero-title">Discover New Galaxies for Your Brand</h1>
             <p class="hero-description">
@@ -315,15 +332,14 @@
                 cosmic approach to marketing launches your brand beyond the
                 competition.
             </p>
-            <div class="button-container" href="journey-page.html">
-               <a href=journey-page.html class="contact-btn">
+            <div class="button-container">
+                <a href="journey-page.html" class="contact-btn">
                     Start Your Journey
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
-                    </a>
-                </button>
+                </a>
                 <button class="secondary-btn">Explore Services</button>
             </div>
             <div class="features">
@@ -354,7 +370,7 @@
     <script>
         // Canvas animation for floating objects
         document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('floatingObjectsCanvas');
+            const canvas = document.querySelector('#floatingObjectsCanvas canvas');
             const ctx = canvas.getContext('2d');
             
             // Set canvas size
@@ -427,7 +443,6 @@
                             ctx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
                             ctx.fill();
                             
-                            // Move star
                             obj.y += obj.speed;
                             if (obj.y > canvas.height) {
                                 obj.y = 0;
@@ -441,7 +456,6 @@
                             ctx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
                             ctx.fill();
                             
-                            // Add ring to planet
                             if (Math.random() > 0.5) {
                                 ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
                                 ctx.lineWidth = 2;
@@ -449,13 +463,11 @@
                                 ctx.ellipse(obj.x, obj.y, obj.size * 1.5, obj.size * 0.5, obj.rotation || 0, 0, Math.PI * 2);
                                 ctx.stroke();
                                 
-                                // Rotate planet
                                 if (obj.rotation !== undefined && obj.rotationSpeed !== undefined) {
                                     obj.rotation += obj.rotationSpeed;
                                 }
                             }
                             
-                            // Move planet
                             obj.y += obj.speed;
                             if (obj.y > canvas.height + obj.size) {
                                 obj.y = -obj.size;
@@ -476,7 +488,6 @@
                             ctx.closePath();
                             ctx.fill();
                             
-                            // Move comet diagonally
                             obj.x += obj.speed;
                             obj.y += obj.speed;
                             if (obj.x > canvas.width || obj.y > canvas.height) {
@@ -492,10 +503,7 @@
                 requestAnimationFrame(animate);
             }
             
-            // Handle window resize
             window.addEventListener('resize', resizeCanvas);
-            
-            // Initial setup
             resizeCanvas();
             animate();
         });
@@ -503,15 +511,81 @@
         // Mobile menu toggle
         document.querySelector('.menu-btn').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const contentContainer = document.querySelector('.content-container');
+            
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            menuOverlay.classList.toggle('active');
+            
+            if (window.innerWidth <= 768) {
+                contentContainer.classList.toggle('hidden');
+            }
         });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function() {
                 document.querySelector('.nav-links').style.display = 'none';
+                document.querySelector('.menu-overlay').classList.remove('active');
+                document.querySelector('.content-container').classList.remove('hidden');
             });
         });
+        
+        // Navbar glow effect
+        function createGlowEffect() {
+            const navbar = document.querySelector('.navbar');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = navbar.offsetHeight + 20;
+            canvas.style.position = 'absolute';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '999';
+            
+            document.body.appendChild(canvas);
+            
+            let gradientColors = ['#9333ea', '#6366f1', '#c3b1e1'];
+            let currentColorIndex = 0;
+            
+            function drawGlow() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                gradient.addColorStop(0, 'transparent');
+                gradient.addColorStop(0.5, gradientColors[currentColorIndex]);
+                gradient.addColorStop(1, 'transparent');
+                
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 5;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(canvas.width, 0);
+                ctx.lineTo(canvas.width, canvas.height);
+                ctx.lineTo(0, canvas.height);
+                ctx.closePath();
+                ctx.stroke();
+                
+                currentColorIndex = (currentColorIndex + 1) % gradientColors.length;
+                
+                requestAnimationFrame(drawGlow);
+            }
+            
+            drawGlow();
+        }
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 768) {
+                createGlowEffect();
+            }
+        });
+        
+        if (window.innerWidth <= 768) {
+            createGlowEffect();
+        }
     </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'924ea0939c0e6765',t:'MTc0Mjc0MDIzMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
